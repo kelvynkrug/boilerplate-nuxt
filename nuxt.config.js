@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Esteira',
+    title: 'Boilerplate',
     htmlAttrs: {
       lang: 'en',
     },
@@ -32,16 +32,49 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    // https://vuetifyjs.com/en/getting-started/installation/#nuxt-install
+    '@nuxtjs/vuetify',
+    // https://github.com/nuxt-community/router-module
+    [
+      '@nuxtjs/router',
+      {
+        fileName: 'nuxt.router.js',
+      },
+    ],
   ],
+
+  device: {
+    refreshOnResize: true,
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/axios'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    publicPath: './static/',
+    extractCSS: true,
+    loaders: {
+      vue: {
+        prettify: false,
+      },
+    },
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     withCredentials: true,
+  },
+
+  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
+  vuetify: {
+    treeShake: true,
+    icons: {
+      iconfont: 'mdi',
+    },
+  },
+
+  router: {
+    base: process.env.ROUTE || '/',
   },
 };
